@@ -1,0 +1,7 @@
+body {
+  background: red;
+}
+body .clock-element {
+  display: inline-flex;
+  width: 30%;
+}
