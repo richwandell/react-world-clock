@@ -1,8 +1,11 @@
 import ClockView from "./ClockView";
+import CompactView from "./CompactView";
+import TableView from "./TableView";
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 import Toolbar from './Toolbar';
 import Observer from "./Observer";
+import Clear from "./Clear";
 
 class WorldClock extends Observer {
 
@@ -11,6 +14,7 @@ class WorldClock extends Observer {
         super(props);
         this.observers = {};
         this.subscribe(this, 'toolbar_state');
+        this.subscribe(this, 'clear_mounted');
         if(window.localStorage["WorldClockState"]){
             try {
                 let state = JSON.parse(window.localStorage["WorldClockState"]);
@@ -18,7 +22,14 @@ class WorldClock extends Observer {
                 return;
             }catch(e){}
         }
-        this.state = {view: 0};
+        this.state = {
+            view: 0,
+            clocks: [
+                {skin: "swissRail", radius: 85, noseconds: false, gmtOffset: -4, city: "New York"},
+                {skin: "swissRail", radius: 85, noseconds: false, gmtOffset: 1, city: "London"},
+                {skin: "swissRail", radius: 85, noseconds: false, gmtOffset: 8, city: "Taiwan"}
+            ]
+        };
     }
 
     subscribe(observer: Component, event: string) {
@@ -37,12 +48,16 @@ class WorldClock extends Observer {
     }
 
     onMessage(event, message) {
-        console.log(event, message);
+        console.debug(event, message);
         switch(event) {
             case 'toolbar_state':
                 if(this.state.view !== message) {
                     this.setState({view: message});
                 }
+                break;
+
+            case 'clear_mounted':
+                this.setState({view: this.oldView});
                 break;
         }
         window.localStorage['WorldClockState'] = JSON.stringify(this.state);
@@ -53,24 +68,54 @@ class WorldClock extends Observer {
         this.notify('wc_mount');
     }
 
-    render() {
-        let view = (
-            ""
-        );
+    getView(sView) {
+        switch(sView) {
+            case 1:
+                return (
+                    <CompactView WorldClock={this}/>
+                );
+                break;
 
-        if (this.state.view === 0) {
-            view = (
-                <ClockView
-                    WorldClock={this}/>
-            );
+            case 2:
+                return (
+                    <TableView WorldClock={this}/>
+                );
+                break;
+
+            case 3:
+                return (<Clear WorldClock={this}/>);
+                break;
+
+            default:
+                return (
+                    <ClockView WorldClock={this}/>
+                );
+                break;
         }
+    }
 
+    addCity() {
+        this.oldView = this.state.view;
+        this.setState({
+            view: 3,
+            clocks: this.state.clocks.concat([
+                {skin: "swissRail", radius: 85, noseconds: false, gmtOffset: 8, city: "Taiwan"}
+            ])
+        });
+        this.notify('city_added', this.state.clocks);
+    }
+
+    render() {
         return (
             <div className="container-fluid" >
                 <div id='clock-holder' className='jumbotron'>
-                    <Toolbar
-                        WorldClock={this}/>
-                    {view}
+                    <Toolbar WorldClock={this}/>
+                    {this.getView(this.state.view)}
+                    <div className={"row"}>
+                        <a href={"javascript:void(0)"}
+                           onClick={() => this.addCity()}
+                        >Add City</a>
+                    </div>
                 </div>
             </div>
         );

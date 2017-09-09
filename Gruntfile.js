@@ -71,13 +71,33 @@ module.exports = function (grunt) {
             }
         },
         copy: {
-            release: {
+            bootstrap: {
                 files: [
                     {
                         expand: true,
                         src: ['**'],
                         dest: 'app/lib/bootstrap',
                         cwd: 'node_modules/bootstrap/dist/'
+                    }
+                ]
+            },
+            flags: {
+                files: [
+                    {
+                        expand: true,
+                        src: ['css/**/*', 'flags/**/*'],
+                        dest: 'app/lib/flag-icon-css',
+                        cwd: 'node_modules/flag-icon-css/'
+                    }
+                ]
+            },
+            fonts: {
+                files: [
+                    {
+                        expand: true,
+                        src: ['css/**/*', 'fonts/**/*'],
+                        dest: 'app/lib/font-awesome',
+                        cwd: 'node_modules/font-awesome/'
                     }
                 ]
             }
