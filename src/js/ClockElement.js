@@ -6,10 +6,10 @@ export default class ClockElement extends Observer {
 
     componentDidMount() {
         console.debug("ClockElement.componentDidMount");
-        this.props.WorldClock.subscribe(this, 'wc-mount');
+        this.props.WorldClock.subscribe(this, 'wc_mount');
     }
 
-    onMessage(message) {
+    onMessage(event, message) {
         console.debug("ClockElement.notify");
         const element = ReactDom.findDOMNode(this);
 

@@ -5,3 +5,9 @@ body .clock-element {
   display: inline-flex;
   width: 30%;
 }
+body .wc-view {
+  padding-top: 25px;
+}
+.toolbar-icon {
+  margin-right: 5px;
+}
