@@ -1,5 +1,5 @@
 body {
-  background: red;
+  background: blue;
 }
 body .clock-element {
   display: inline-flex;
@@ -11,6 +11,35 @@ body .wc-view {
 body .wc-view .clock-container {
   width: 200px;
   display: inline-block;
+}
+body .wc-view .compact-col {
+  display: inline-block;
+  min-height: 100px;
+  padding: 9px 9px 20px 20px;
+  text-align: left;
+}
+body .wc-view .compact-col::before {
+  content: "";
+  position: absolute;
+  width: 98%;
+  height: 94%;
+  display: block;
+  left: 1%;
+  top: 3%;
+  border-radius: 5px;
+  border: 1px solid rgba(128, 128, 128, 0.23);
+}
+body .wc-view .compact-col .flag-icon {
+  font-size: 48px;
+}
+body .wc-view .compact-col .compact-col-city {
+  display: inline-block;
+  vertical-align: top;
+  color: #0157f1;
+  font-size: 1.4em;
+  font-weight: bold;
+  font-family: monospace;
+  margin-left: 10px;
 }
 .toolbar-icon {
   margin-right: 5px;

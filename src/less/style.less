@@ -1,26 +1,59 @@
 body {
-    background: red;
+  background: blue;
 
-    .btn-toolbar {
+  .btn-toolbar {
 
+  }
+
+  .clock-element {
+    display: inline-flex;
+    width: 30%;
+  }
+
+  .wc-view {
+    padding-top: 25px;
+
+    .clock-container {
+      width: 200px;
+      display: inline-block;
     }
 
-    .clock-element {
-        display: inline-flex;
-        width: 30%;
-    }
+    .compact-col {
+      display: inline-block;
+      min-height: 100px;
+      padding: 9px 9px 20px 20px;
+      text-align: left;
 
-    .wc-view {
-        padding-top: 25px;
+      &::before {
+        content: "";
+        position: absolute;
+        width: 98%;
+        height: 94%;
+        display: block;
+        left: 1%;
+        top: 3%;
+        border-radius: 5px;
+        border: 1px solid rgba(128, 128, 128, 0.23);
+      }
 
-        .clock-container {
-            width: 200px;
-            display: inline-block;
-        }
+      .flag-icon {
+        font-size: 48px;
+      }
+
+      .compact-col-city {
+        display: inline-block;
+        vertical-align: top;
+        color: #0157f1;
+        font-size: 1.4em;
+        font-weight: bold;
+        font-family: monospace;
+        margin-left: 10px;
+      }
     }
+  }
 }
 
 .toolbar-icon {
-    margin-right: 5px;
+  margin-right: 5px;
 }
 
