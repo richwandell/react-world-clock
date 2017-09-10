@@ -1,0 +1,59 @@
+.clock-container {
+  width: 200px;
+  display: inline-block;
+  position: relative;
+  transition: box-shadow 1s;
+
+  &:hover{
+    border: 1px solid lightgrey;
+    box-shadow: inset 0px 0px 5px rgba(128, 128, 128, 0.52), 0px 0px 5px rgba(128, 128, 128, 0.58);
+    border-radius: 5px;
+  }
+
+  .clock-element {
+    display: inline-flex;
+    width: 30%;
+  }
+
+  .floating-action-btn {
+    transition: opacity .2s;
+    opacity: 0;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+
+    .btn-floating {
+      border-radius: 51px;
+      padding: 0.5rem 1.0rem;
+      box-shadow: 2px 2px 5px;
+      min-width: 2rem;
+    }
+
+    ul {
+      opacity: 0;
+      display: table-row;
+      li {
+        list-style: none;
+        width: 100%;
+        margin-bottom: -20px;
+        margin-left: 7px;
+        transition: margin-bottom .2s;
+        .btn-floating {
+          padding: 0.2rem 0.2rem;
+        }
+      }
+    }
+  }
+
+  &:hover{
+    .floating-action-btn{
+      opacity: 1;
+      ul {
+        opacity: 1;
+        li {
+          margin-bottom: -2px;
+        }
+      }
+    }
+  }
+}

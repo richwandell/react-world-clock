@@ -1,9 +1,8 @@
 body {
   background: blue;
 }
-body .clock-element {
-  display: inline-flex;
-  width: 30%;
+body .toolbar-icon {
+  margin-right: 5px;
 }
 body .wc-view {
   padding-top: 25px;
@@ -11,6 +10,53 @@ body .wc-view {
 body .wc-view .clock-container {
   width: 200px;
   display: inline-block;
+  position: relative;
+  transition: box-shadow 1s;
+}
+body .wc-view .clock-container:hover {
+  border: 1px solid lightgrey;
+  box-shadow: inset 0px 0px 5px rgba(128, 128, 128, 0.52), 0px 0px 5px rgba(128, 128, 128, 0.58);
+  border-radius: 5px;
+}
+body .wc-view .clock-container .clock-element {
+  display: inline-flex;
+  width: 30%;
+}
+body .wc-view .clock-container .floating-action-btn {
+  transition: opacity .2s;
+  opacity: 0;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+body .wc-view .clock-container .floating-action-btn .btn-floating {
+  border-radius: 51px;
+  padding: 0.5rem 1.0rem;
+  box-shadow: 2px 2px 5px;
+  min-width: 2rem;
+}
+body .wc-view .clock-container .floating-action-btn ul {
+  opacity: 0;
+  display: table-row;
+}
+body .wc-view .clock-container .floating-action-btn ul li {
+  list-style: none;
+  width: 100%;
+  margin-bottom: -20px;
+  margin-left: 7px;
+  transition: margin-bottom 0.2s;
+}
+body .wc-view .clock-container .floating-action-btn ul li .btn-floating {
+  padding: 0.2rem 0.2rem;
+}
+body .wc-view .clock-container:hover .floating-action-btn {
+  opacity: 1;
+}
+body .wc-view .clock-container:hover .floating-action-btn ul {
+  opacity: 1;
+}
+body .wc-view .clock-container:hover .floating-action-btn ul li {
+  margin-bottom: -2px;
 }
 body .wc-view .compact-col {
   display: inline-block;
@@ -29,6 +75,13 @@ body .wc-view .compact-col::before {
   border-radius: 5px;
   border: 1px solid rgba(128, 128, 128, 0.23);
 }
+body .wc-view .compact-col:first-child {
+  font-size: 2.5em;
+}
+body .wc-view .compact-col:first-child::before {
+  width: 99%;
+  left: .5%;
+}
 body .wc-view .compact-col .flag-icon {
   font-size: 48px;
 }
@@ -40,7 +93,4 @@ body .wc-view .compact-col .compact-col-city {
   font-weight: bold;
   font-family: monospace;
   margin-left: 10px;
-}
-.toolbar-icon {
-  margin-right: 5px;
 }

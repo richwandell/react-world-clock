@@ -17,7 +17,7 @@ export default class Toolbar extends Component {
     render() {
         console.debug("Toolbar.render");
         this.worldClock.notify('toolbar_state', this.state.selected);
-        const button1Class = `btn ${this.state.selected === 0 ? "btn-primary active" : "btn-default"}`;
+        const button1Class = `waves-effect waves-light btn ${this.state.selected === 0 ? "btn-primary active" : "btn-default"}`;
         const button1 = (
             <button id="list" className={button1Class}
                     onClick={(e) => this.buttonClicked(e, 0)}
@@ -26,7 +26,7 @@ export default class Toolbar extends Component {
             </button>
         );
 
-        const button2Class = `btn ${this.state.selected === 1 ? "btn-primary active" : "btn-default"}`;
+        const button2Class = `waves-effect waves-light btn ${this.state.selected === 1 ? "btn-primary active" : "btn-default"}`;
         const button2 = (
             <button id="new" className={button2Class}
                     onClick={(e) => this.buttonClicked(e, 1)}
@@ -35,7 +35,7 @@ export default class Toolbar extends Component {
             </button>
         );
 
-        const button3Class = `btn ${this.state.selected === 2 ? "btn-primary active" : "btn-default"}`;
+        const button3Class = `waves-effect waves-light btn ${this.state.selected === 2 ? "btn-primary active" : "btn-default"}`;
         const button3 = (
             <button id="passreset" className={button3Class}
                     onClick={(e) => this.buttonClicked(e, 2)}
@@ -46,7 +46,7 @@ export default class Toolbar extends Component {
 
         return (
             <div className="row">
-                <div className={`col-xs-offset 1 col-xs-11 col-sm-offset-2 col-sm-8 col-md-offset-3 col-md-6`}>
+                <div className={`offset-xs-1 col-xs-11 offset-sm-2 col-sm-8 offset-md-3 col-md-6`}>
                     <div className={`btn-toolbar" role="toolbar`}>
                         <div className={`btn-group btn-group-justified`} role="group">
                             <div className="btn-group" role="group">

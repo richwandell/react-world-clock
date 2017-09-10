@@ -6,20 +6,7 @@ module.exports = function (grunt) {
         watch: {
             release: {
                 files: ['src/**/*'],
-                tasks: ['pug', 'webpack', 'less']
-            }
-        },
-        pug: {
-            release: {
-                options: {
-                    data: {
-                        debug: true
-                    },
-                    pretty: true
-                },
-                files: {
-                    'app/NewTab.html': 'src/pug/main.pug'
-                }
+                tasks: ['clean:npm', 'copy', 'less', 'webpack']
             }
         },
         webpack: {
@@ -44,7 +31,6 @@ module.exports = function (grunt) {
                     colors: true
                 },
                 progress: false,
-                devtool: 'source-map',
                 plugins: [
                     new webpack.DefinePlugin({
                         'process.env': {
@@ -70,14 +56,37 @@ module.exports = function (grunt) {
                 }
             }
         },
+        clean: {
+            npm: ['app/lib/*/']
+        },
         copy: {
+            html: {
+                files: [
+                    {
+                        expand: true,
+                        src: ['NewTab.html'],
+                        dest: 'app/',
+                        cwd: 'src/'
+                    }
+                ]
+            },
             bootstrap: {
                 files: [
                     {
                         expand: true,
-                        src: ['**'],
+                        src: ['css/*.min.css', 'js/*.min.*'],
                         dest: 'app/lib/bootstrap',
                         cwd: 'node_modules/bootstrap/dist/'
+                    }
+                ]
+            },
+            mdbootstrap: {
+                files: [
+                    {
+                        expand: true,
+                        src: ['css/*.min.*', 'js/*.min.*', 'font/**/*', 'img/**/*'],
+                        dest: 'app/lib/mdbootstrap',
+                        cwd: 'node_modules/mdbootstrap/'
                     }
                 ]
             },
@@ -104,7 +113,7 @@ module.exports = function (grunt) {
         }
     });
 
-    grunt.loadNpmTasks('grunt-contrib-pug');
+    grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-webpack');
     grunt.loadNpmTasks('grunt-contrib-less');

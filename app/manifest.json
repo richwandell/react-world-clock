@@ -21,9 +21,5 @@
     }
   ],
 
-  "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
-
-  "web_accessible_resources": [
-    "lib/fonts/glyphicons-halflings-regular.eot"
-  ]
+  "content_security_policy": "script-src 'self' 'unsafe-eval' 'unsafe-inline'; object-src 'self'"
 }

@@ -1,6 +1,6 @@
 import React from 'react';
-import ReactDom from "react-dom";
 import Observer from "./Observer";
+import FloatingButtonGroup from "./FloatingButtonGroup";
 
 export default class ClockElement extends Observer {
 
@@ -46,6 +46,7 @@ export default class ClockElement extends Observer {
 
         return (
             <div>
+                <FloatingButtonGroup WorldClock={this.worldClock} />
                 <canvas
                     width='30%'
                     height='auto'
